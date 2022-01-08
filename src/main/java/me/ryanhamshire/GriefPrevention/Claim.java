@@ -523,6 +523,14 @@ public class Claim
         if (uuid.equals(this.getOwnerID()) || GriefPrevention.instance.dataStore.getPlayerData(uuid).ignoreClaims)
             return null;
 
+        // Check if claim owner is online then allow break / place
+        if (player != null)
+        {
+            // If owner player is returned, claim owner is online
+            if (Bukkit.getPlayer(this.getOwnerID()) != null && (event.getClass().equals(BlockBreakEvent.getClass()) || event.getClass().equals(BlockPlaceEvent.getClass())) 
+                return null;
+        }
+
         // Look for explicit individual permission.
         if (player != null)
         {
